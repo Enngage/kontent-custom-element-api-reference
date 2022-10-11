@@ -1,0 +1,56 @@
+<div>
+
+    <div libFlexRow [libFlexRowGap]="'16px'">
+        <div libFlexColumn>
+            <button mat-flat-button [disabled]="loading" [color]="'primary'" (click)="buildCourse(false)">Build
+                production</button>
+        </div>
+        <div libFlexColumn>
+            <button mat-flat-button [disabled]="loading" [color]="'primary'" (click)="buildCourse(true)">Build
+                preview</button>
+        </div>
+        <div libFlexColumn libFlexFill>
+        </div>
+        <div libFlexColumn>
+            <mat-checkbox [color]="'primary'" [(ngModel)]="publishToGitHub">Publish to GitHub</mat-checkbox>
+        </div>
+    </div>
+</div>
+
+<div style="height: 4px" class="push-top">
+    <mat-progress-bar [mode]="'indeterminate'" *ngIf="loading"></mat-progress-bar>
+</div>
+<div *ngIf="buildResponse" class="push-top-sm card">
+    <h3>
+        Build result
+    </h3>
+    <div class="push-top-sm">
+        <ul>
+            <li>
+                Warnings: <strong>{{buildResponse.warnings.length}}</strong>
+            </li>
+            <li>
+                GitHub result: <strong>{{buildResponse.gitHubResult}}</strong>
+            </li>
+        </ul>
+    </div>
+
+    <div class="push-top warning-box" *ngIf="buildResponse.warnings.length">
+        <div libFlexRow [libFlexRowGap]="'8px'" *ngFor="let warning of buildResponse.warnings; let i = index">
+            <div libFlexColumn>
+                <strong>{{ i + 1}})</strong>
+            </div>
+            <div libFlexColumn>
+                {{ warning }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="infoMessage" class="info-box push-bottom push-top">
+    {{ infoMessage }}
+</div>
+
+<div *ngIf="errorMessage" class="error-box push-bottom push-top">
+    {{ errorMessage }}
+</div>
