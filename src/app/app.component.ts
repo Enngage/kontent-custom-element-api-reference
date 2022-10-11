@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { CoreComponent } from './core/core.component';
 import { KontentService } from './services/kontent.service';
 import { catchError, map, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { saveAs } from 'file-saver';
 
 export interface IBuildResponse {
@@ -111,9 +111,16 @@ export class AppComponent extends CoreComponent implements OnInit, AfterViewChec
                     super.markForCheck();
                 }),
                 catchError((error) => {
+                    console.error(error);
                     this.loading = false;
-                    this.errorMessage =
-                        'There was an error building course. Please see browser console for more details';
+
+                    if (error instanceof HttpErrorResponse && error.error.message) {
+                        this.errorMessage = error.error.message;
+                    } else {
+                        this.errorMessage =
+                            'There was an error building course. Please see browser console for more details';
+                    }
+
                     super.markForCheck();
 
                     return of(false);
