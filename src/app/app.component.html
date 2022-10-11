@@ -2,11 +2,11 @@
 
     <div libFlexRow [libFlexRowGap]="'16px'">
         <div libFlexColumn>
-            <button mat-flat-button [disabled]="loading" [color]="'primary'" (click)="buildCourse(false)">Build
+            <button class="primary-button" [disabled]="loading" (click)="buildCourse(false)">Build
                 production</button>
         </div>
         <div libFlexColumn>
-            <button mat-flat-button [disabled]="loading" [color]="'primary'" (click)="buildCourse(true)">Build
+            <button class="primary-button" [disabled]="loading" (click)="buildCourse(true)">Build
                 preview</button>
         </div>
         <div libFlexColumn libFlexFill>
