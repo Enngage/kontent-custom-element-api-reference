@@ -21,16 +21,34 @@
     <mat-progress-bar [mode]="'indeterminate'" *ngIf="loading"></mat-progress-bar>
 </div>
 <div *ngIf="buildResponse" class="push-top-sm card">
+    <div libFlexRow>
+        <div libFlexColumn libFlexFill>
+            <h3>
+                Build result
+            </h3>
+        </div>
+        <div libFlexColumn>
+            <button class="secondary-button" (click)="handleDownloadOpenApi()">Download Open API</button>
+        </div>
+    </div>
     <h3>
-        Build result
     </h3>
     <div class="push-top-sm">
         <ul>
             <li>
-                Warnings: <strong>{{buildResponse.warnings.length}}</strong>
+                Root: <strong>{{buildResponse.root}}</strong>
+            </li>
+            <li>
+                Filename: <strong>{{buildResponse.filename}}</strong>
+            </li>
+            <li>
+                Is preview: <strong>{{buildResponse.isPreview}}</strong>
             </li>
             <li>
                 GitHub result: <strong>{{buildResponse.gitHubResult}}</strong>
+            </li>
+            <li>
+                Warnings: <strong>{{buildResponse.warnings.length}}</strong>
             </li>
         </ul>
     </div>

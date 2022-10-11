@@ -3,6 +3,16 @@
 @import './app/positioning/push';
 @import './app/positioning/pull';
 
+@import '@angular/material/theming';
+
+$custom-typography: mat-typography-config(
+    $font-family: "'Inter', sans-serif",
+    $subheading-2: mat-typography-level(20px, 20px, 400),
+    $subheading-1: mat-typography-level(18px, 18px, 400)
+);
+
+@include mat-core($custom-typography);
+
 @include flex();
 @include pad-utilities();
 @include push-utilities();
@@ -11,8 +21,7 @@
 $primaryColor: #db3c00;
 $primaryColorContrast: #fff;
 $secondaryColor: rgb(55, 81, 124);
-$secondaryColorHover: rgb(175, 197, 233);
-$secondaryColorContrast: #525252;
+$secondaryColorContrast: #ffffff;
 $linkColor: #db3c00;
 $linkColorHover: #953000;
 $textColor: #525252;
@@ -116,20 +125,15 @@ h5 {
 
 .secondary-button {
     cursor: pointer;
-    text-transform: uppercase;
-    color: $secondaryColor;
-    border: solid 1px $secondaryColorContrast;
+    background-color: $secondaryColor;
+    color: $secondaryColorContrast;
     padding: 8px 16px;
     text-transform: uppercase;
-    border: solid 1px $primaryColor;
+    border: solid 1px $secondaryColor;
     border-radius: 500px;
     font-size: 12px;
     font-weight: 700;
     line-height: 18px;
-
-    &:hover {
-        background-color: $secondaryColorHover;
-    }
 }
 
 .error-box {
@@ -152,4 +156,3 @@ h5 {
     color: $warningBoxText;
     border-radius: 8px;
 }
-

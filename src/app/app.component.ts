@@ -5,6 +5,7 @@ import { CoreComponent } from './core/core.component';
 import { KontentService } from './services/kontent.service';
 import { catchError, map, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { saveAs } from 'file-saver';
 
 export interface IBuildResponse {
     executionTime: string;
@@ -13,6 +14,7 @@ export interface IBuildResponse {
     isPreview: boolean;
     storeOnGithub: boolean;
     root: string;
+    filename: string;
     warnings: string[];
     openApiJson: any;
 }
@@ -81,6 +83,16 @@ export class AppComponent extends CoreComponent implements OnInit, AfterViewChec
         }
     }
 
+    handleDownloadOpenApi(): void {
+        if (!this.buildResponse) {
+            return;
+        }
+
+        const file = new Blob([JSON.stringify(this.buildResponse.openApiJson)], { type: 'application/json' });
+
+        saveAs(file, `${this.buildResponse.filename}`);
+    }
+
     buildCourse(isPreview: boolean): void {
         this.clearStatus();
 
@@ -125,12 +137,9 @@ export class AppComponent extends CoreComponent implements OnInit, AfterViewChec
             throw Error(`Invalid custom element configuration. Missing 'azureFunctionUrl' configuration option`);
         }
 
-        const url = `${this.azureFunctionUrl.replace(
-            this.functionApiReferenceCodenameMacro,
-            this.courseCodename
-        )}${this.azureFunctionUrl.includes('?') ? '&' : '?'}isPreview=${
-            isPreview ? 'true' : 'false'
-        }&storeOnGithub=${this.publishToGitHub ? 'true' : 'false'}`;
+        const url = `${this.azureFunctionUrl.replace(this.functionApiReferenceCodenameMacro, this.courseCodename)}${
+            this.azureFunctionUrl.includes('?') ? '&' : '?'
+        }isPreview=${isPreview ? 'true' : 'false'}&storeOnGithub=${this.publishToGitHub ? 'true' : 'false'}`;
 
         return url;
     }
