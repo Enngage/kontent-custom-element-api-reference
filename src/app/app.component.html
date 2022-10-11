@@ -54,7 +54,7 @@
     </div>
 
     <div class="push-top warning-box" *ngIf="buildResponse.warnings.length">
-        <div libFlexRow [libFlexRowGap]="'8px'" *ngFor="let warning of buildResponse.warnings; let i = index">
+        <div libFlexRow [libFlexRowGap]="'8px'" *ngFor="let warning of buildResponse.warnings; let i = index; let first = first" [class.push-top-sm]="!first">
             <div libFlexColumn>
                 <strong>{{ i + 1}})</strong>
             </div>
