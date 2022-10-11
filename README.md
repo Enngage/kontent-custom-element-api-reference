@@ -1,10 +1,3 @@
-![Last modified][last-commit]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-
-[![Stack Overflow][stack-shield]](https://stackoverflow.com/tags/kentico-kontent)
-[![GitHub Discussions][discussion-shield]](https://github.com/Kentico/Home/discussions)
-
 <p align="center">
 <image src="docs/kontent.webp" alt="kontent logo" width="150" />
 </p>
