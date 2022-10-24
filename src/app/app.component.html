@@ -24,7 +24,7 @@
     <div libFlexRow>
         <div libFlexColumn libFlexFill>
             <h3>
-                Build result
+                Build Result
             </h3>
         </div>
         <div libFlexColumn>
@@ -43,6 +43,9 @@
             </li>
             <li>
                 Is preview: <strong>{{buildResponse.isPreview}}</strong>
+            </li>
+            <li>
+               Runtime: <strong>{{buildResponse.executionTime}}</strong>
             </li>
             <li>
                 GitHub result: <strong>{{buildResponse.gitHubResult}}</strong>
