@@ -11,7 +11,8 @@
         <div libFlexColumn libFlexFill>
         </div>
         <div libFlexColumn>
-            <mat-checkbox [color]="'primary'" [(ngModel)]="publishToGitHub">Publish to GitHub (<strong>{{branch}}</strong> branch)</mat-checkbox>
+            <mat-checkbox [color]="'primary'" [(ngModel)]="publishToGitHub">Publish to GitHub
+                (<strong>{{branch}}</strong> branch)</mat-checkbox>
         </div>
     </div>
 </div>
@@ -57,17 +58,17 @@
             </li>
         </ul>
     </div>
+</div>
 
-    <div class="push-top warning-box" *ngIf="buildResponse.warnings.length">
-        <div libFlexRow [libFlexRowGap]="'8px'"
-            *ngFor="let warning of buildResponse.warnings; let i = index; let first = first"
-            [class.push-top-sm]="!first">
-            <div libFlexColumn>
-                <strong>{{ i + 1}})</strong>
-            </div>
-            <div libFlexColumn>
-                {{ warning }}
-            </div>
+<div *ngIf="buildResponse && buildResponse.warnings.length">
+    <div libFlexRow [libFlexRowGap]="'8px'" class="push-top warning-box"
+        *ngFor="let warning of buildResponse.warnings; let i = index; let first = first"
+        [class.push-top-sm]="!first">
+        <div libFlexColumn>
+            <strong>{{ i + 1}})</strong>
+        </div>
+        <div libFlexColumn>
+            {{ warning }}
         </div>
     </div>
 </div>
