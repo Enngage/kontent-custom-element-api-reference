@@ -22,6 +22,7 @@ interface IElementInit {
     context: ICustomElementContext;
     getElementValue: (elementCodename: string) => string | undefined;
     azureFunctionUrl: string;
+    branch: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -45,7 +46,8 @@ export class KontentService {
                     value: element.value,
                     isDisabled: element.disabled,
                     getElementValue: (elementCodename) => CustomElement.getElementValue(elementCodename),
-                    azureFunctionUrl: element.config.azureFunctionUrl
+                    azureFunctionUrl: element.config.azureFunctionUrl,
+                    branch: element.config.branch,
                 });
             });
         } catch (error) {

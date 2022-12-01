@@ -5,8 +5,8 @@
 export const environment = {
     production: false,
     kontent: {
-        azureFunctionUrl: 'https://learn-portal-functions-dev.azurewebsites.net/api/buildApiReferenceJson/{{apiReferenceCodename}}?code=o71h-M1ep1JiK5FVX_DmWxiLSDm5PKijO-J20faLi5PmAzFudsGGbg==',
-        defaultCourseCodename: 'prototype_api'
+        azureFunctionUrl: 'https://kontent-ai-api-reference-dev.azurewebsites.net/api/buildApiReferenceJson/{{apiReferenceCodename}}?code=kcVLlvOJvy7yodHkEYYM7fNV6dFX0DgYIzqs3Fn3_iF5AzFueshSLw==',
+        defaultCourseCodename: 'management_api_v2'
     }
 };
 

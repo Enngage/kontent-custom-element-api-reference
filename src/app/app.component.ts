@@ -15,6 +15,7 @@ export interface IBuildResponse {
     storeOnGithub: boolean;
     root: string;
     filename: string;
+    branch: string;
     warnings: string[];
     openApiJson: any;
 }
@@ -40,6 +41,7 @@ export class AppComponent extends CoreComponent implements OnInit, AfterViewChec
 
     // publish
     public publishToGitHub: boolean = true;
+    public branch: string = 'main';
 
     // azure function url
     public azureFunctionUrl?: string;
@@ -54,6 +56,7 @@ export class AppComponent extends CoreComponent implements OnInit, AfterViewChec
                 (data) => {
                     // get codename of current course content item
                     this.courseCodename = data.context.item.codename;
+                    this.branch = data.branch;
                     this.azureFunctionUrl = data.azureFunctionUrl;
                 },
                 (error) => {
@@ -146,7 +149,9 @@ export class AppComponent extends CoreComponent implements OnInit, AfterViewChec
 
         const url = `${this.azureFunctionUrl.replace(this.functionApiReferenceCodenameMacro, this.courseCodename)}${
             this.azureFunctionUrl.includes('?') ? '&' : '?'
-        }isPreview=${isPreview ? 'true' : 'false'}&storeOnGithub=${this.publishToGitHub ? 'true' : 'false'}`;
+        }isPreview=${isPreview ? 'true' : 'false'}&storeOnGithub=${this.publishToGitHub ? 'true' : 'false'}&branch=${
+            this.branch
+        }`;
 
         return url;
     }

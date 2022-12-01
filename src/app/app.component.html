@@ -2,17 +2,16 @@
 
     <div libFlexRow [libFlexRowGap]="'16px'">
         <div libFlexColumn>
-            <button class="primary-button" [disabled]="loading" (click)="buildCourse(false)">Build
-                production</button>
+            <button class="primary-button" [disabled]="loading" (click)="buildCourse(false)">Build (Delivery
+                API)</button>
         </div>
         <div libFlexColumn>
-            <button class="primary-button" [disabled]="loading" (click)="buildCourse(true)">Build
-                preview</button>
+            <button class="primary-button" [disabled]="loading" (click)="buildCourse(true)">Build (Preview API)</button>
         </div>
         <div libFlexColumn libFlexFill>
         </div>
         <div libFlexColumn>
-            <mat-checkbox [color]="'primary'" [(ngModel)]="publishToGitHub">Publish to GitHub</mat-checkbox>
+            <mat-checkbox [color]="'primary'" [(ngModel)]="publishToGitHub">Publish to GitHub (<strong>{{branch}}</strong> branch)</mat-checkbox>
         </div>
     </div>
 </div>
@@ -45,10 +44,13 @@
                 Is preview: <strong>{{buildResponse.isPreview}}</strong>
             </li>
             <li>
-               Runtime: <strong>{{buildResponse.executionTime}}</strong>
+                Runtime: <strong>{{buildResponse.executionTime}}</strong>
             </li>
             <li>
                 GitHub result: <strong>{{buildResponse.gitHubResult}}</strong>
+            </li>
+            <li>
+                Branch: <strong>{{buildResponse.branch}}</strong>
             </li>
             <li>
                 Warnings: <strong>{{buildResponse.warnings.length}}</strong>
@@ -57,7 +59,9 @@
     </div>
 
     <div class="push-top warning-box" *ngIf="buildResponse.warnings.length">
-        <div libFlexRow [libFlexRowGap]="'8px'" *ngFor="let warning of buildResponse.warnings; let i = index; let first = first" [class.push-top-sm]="!first">
+        <div libFlexRow [libFlexRowGap]="'8px'"
+            *ngFor="let warning of buildResponse.warnings; let i = index; let first = first"
+            [class.push-top-sm]="!first">
             <div libFlexColumn>
                 <strong>{{ i + 1}})</strong>
             </div>
